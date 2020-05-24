@@ -60,7 +60,7 @@ class CarCard2 extends Component {
     this.getCarModel();
   };
   getCarModel = () => {
-    axios.get("/api/cars/")
+    axios.get("https://wp-car-rental.herokuapp.com/api/cars/")
     .then(response => {
       const data = response.data;
       this.setState({ cars: data})

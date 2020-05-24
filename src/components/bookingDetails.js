@@ -33,7 +33,7 @@ class BookingTable extends Component {
     this.getBookingModel();
   };
   getBookingModel = () => {
-    axios.get("/api/bookings")
+    axios.get("https://wp-car-rental.herokuapp.com/api/bookings")
     .then(response => {
       const data = response.data;
       this.setState({ bookings: data})

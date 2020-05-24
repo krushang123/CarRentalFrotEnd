@@ -10,6 +10,7 @@ import history from '../history';
 import Card from '@material-ui/core/Card';
 
 
+
 const useStyles = theme => ({
   root: {
     flexGrow: 1,
@@ -62,7 +63,7 @@ class CarCard extends Component {
     this.getCarModel();
   };
   getCarModel = () => {
-    axios.get("/api/cars")
+    axios.get("https://wp-car-rental.herokuapp.com/api/cars")
     .then(response => {
       const data = response.data;
       this.setState({ cars: data})
@@ -82,11 +83,11 @@ class CarCard extends Component {
       </div>
     ));
   }
-  /*
+  
   loadPage2(){
     this.props.route.push('/page2');
   }
-  */
+  
 
   render() {
     const {classes} = this.props;
