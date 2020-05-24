@@ -2,7 +2,11 @@
   "name": "carrental-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:9000",
+  "engines": {
+    "npm": "6.14.4",
+    "node": "12.16.2"
+  },
+  "proxy": "https://wp-car-rental.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@testing-library/jest-dom": "^4.2.4",
