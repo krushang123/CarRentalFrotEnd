@@ -10,16 +10,16 @@ import Paper from '@material-ui/core/Paper';
 import axios from "axios";
 
 const useStyles = theme => ({
-  table: {
-    minWidth: 650,
-  },
   border: {
     maxWidth: 1000,
     flexGrow: 1,
-    marginTop: 150,
     margin: 'auto',
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+    height: 100,
+    
+  },
+  
+  
 });
 
 class BookingTable extends Component {
@@ -33,14 +33,14 @@ class BookingTable extends Component {
     this.getBookingModel();
   };
   getBookingModel = () => {
-    axios.get("https://wp-car-rental.herokuapp.com/api/bookings")
+    axios.get("https://wp-car-rental.herokuapp.com/api/cars/"+this.props.id)
     .then(response => {
       const data = response.data;
-      this.setState({ bookings: data})
+      if (data !== null || data !== undefined) {
+        this.setState({ bookings: data.bookings})
+      }
       console.log(data);
-      console.log('Data has been recevied!!');
-      
-    })
+     })
     .catch((error) => {
       alert('Error retrieving data!!');
     })
@@ -64,9 +64,9 @@ class BookingTable extends Component {
 
         return (
             <TableContainer component={Paper} className={classes.border} >
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                <TableRow>
+            <Table className={classes.table } aria-label="simple table" >
+                <TableHead variant='head'>
+                <TableRow >
                     <TableCell align="center">User Name</TableCell>
                     <TableCell align="center">Phone Number</TableCell>
                     <TableCell align="center">Issuse Date</TableCell>
@@ -74,7 +74,7 @@ class BookingTable extends Component {
                     
                 </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody align="center">
                       {this.displayTableData()}
                 </TableBody>
 

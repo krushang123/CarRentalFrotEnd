@@ -7,12 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+
 const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
     title: {
-        flexGrow: 1
+        flexGrow: 1,
+        paddingLeft: 200
     }
   }));
 
@@ -24,10 +26,12 @@ const NavBar = () => {
             <AppBar postion="static">
                 <Toolbar>
                     
-                    <Typography variant="h6" className= {classes.title} color="inherit">Car Rentals</Typography>
+                    <Typography variant="h5" className= {classes.title} color="inherit">Car Rentals</Typography>
                 </Toolbar>
             </AppBar>
         </div>
+
+        
 
     )
 }

@@ -13,7 +13,6 @@ const useStyles = theme => ({
   root: {
     maxWidth: 1000,
     flexGrow: 1,
-    marginTop: 150,
     margin: 'auto',
   },
   title: {
@@ -25,17 +24,17 @@ class CarDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookings: []
+      car: {}
     }
   }
   componentDidMount = () => {
     this.getBookingModel();
   };
   getBookingModel = () => {
-    axios.get("https://wp-car-rental.herokuapp.com/api/bookings")
+    axios.get("https://wp-car-rental.herokuapp.com/api/cars/"+this.props.id)
     .then(response => {
       const data = response.data;
-      this.setState({ bookings: data})
+      this.setState({ car: data})
       console.log(data);
       console.log('Data has been recevied!!');
       
@@ -45,13 +44,10 @@ class CarDetail extends Component {
     })
   }
   displayvehicleData()  {
-    if (!this.state.bookings.length) return null;
-    return (this.state.bookings.map((booking, index) => {
-      return (
-      <div key={index}>
-      <h5>{booking.car.vehicleNumber} </h5>
-      </div> )
-    }));
+    return (
+      <div color="textSecondary">
+      <h5 >{this.state.car.vehicleNumber}</h5>
+      </div> );
   }
   render(){
     const {classes} = this.props;
@@ -60,11 +56,11 @@ class CarDetail extends Component {
     return (
       <Card className={classes.root}>
         <CardActions>
-          <Button size="small" variant="contained" color="primary">Available</Button>
+          <Button size="small" variant="contained">Available</Button>
         </CardActions>
         <CardContent>
-        <Typography variant="body2">
-          Vehicle Number: {this.displayvehicleData()}
+        <Typography variant="body2" >
+          Vehicle Number:{this.displayvehicleData()}
         </Typography>
         </CardContent>
       
